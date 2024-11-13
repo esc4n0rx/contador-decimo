@@ -20,9 +20,9 @@ const DecimoCountdown = () => {
         setShowConfetti(true);
         setMessage('É HOJE! 🤑');
         clearInterval(interval);
-      } else if (diff < 86400000) { // Menos de um dia
+      } else if (diff < 86400000) { 
         setMessage('Aguenta aí! Faltam só algumas horas!');
-      } else if (diff < 604800000) { // Menos de uma semana
+      } else if (diff < 604800000) {
         setMessage('Tá chegando! Faltam menos de uma semana!');
       } else {
         setMessage('Falta um tempinho, mas vai valer a pena!');
@@ -59,12 +59,17 @@ const DecimoCountdown = () => {
         {message}
       </animated.div>
       <div className="countdown">
-        {['Dias', 'Horas', 'Minutos', 'Segundos'].map((unit, index) => (
-          <div key={index} className="countdown-unit">
-            <div className="countdown-number" data-value={time[unit]}>
-              {time[unit]}
+        {[
+          { label: 'Dias', key: 'days' },
+          { label: 'Horas', key: 'hours' },
+          { label: 'Minutos', key: 'minutes' },
+          { label: 'Segundos', key: 'seconds' }
+        ].map(({ label, key }) => (
+          <div key={key} className="countdown-unit">
+            <div className="countdown-number" data-value={time[key]}>
+              {time[key]}
             </div>
-            <span className="unit-label">{unit}</span>
+            <span className="unit-label">{label}</span>
           </div>
         ))}
       </div>
